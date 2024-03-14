@@ -16,7 +16,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
-WORKDIR /app
+WORKDIR /application
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
@@ -47,5 +47,8 @@ COPY . .
 # Expose the port that the application listens on.
 EXPOSE 5000
 
+# Set the FLASK_APP environment variable.
+ENV FLASK_APP=application.py
+
 # Run the application.
-CMD python3 -m flask run --host=0.0.0.0
+CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
